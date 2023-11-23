@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Prod_Manger.Data;
+using Prod_Manger.Repository;
+using AutoMapper;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,7 +11,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<ProdManagerDbContext>(options =>
-                              options.UseSqlServer(""));
+                              options.UseSqlServer(builder.Configuration.GetConnectionString("ProdManagerConnectionString")));
+
+builder.Services.AddTransient<ProdManagerDbContext, ProdManagerDbContext>();
+builder.Services.AddTransient<ProductsRepository, ProductsRepository>();
+builder.Services.AddSession();
+
+
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 

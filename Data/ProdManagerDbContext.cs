@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Prod_Manger.Models.Domain;
+using Prod_Manger.ViewModel;
 
 namespace Prod_Manger.Data
 {
@@ -10,8 +11,7 @@ namespace Prod_Manger.Data
 
         }
 
-        public DbSet<ProductModel> Products { get; set; }
-
+        public DbSet<ProductModel> Product { get; set; }
 
     }
 }
