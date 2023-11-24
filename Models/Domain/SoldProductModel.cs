@@ -1,7 +1,12 @@
-﻿namespace Prod_Manger.Models.Domain
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+
+namespace Prod_Manger.Models.Domain
 {
     public class SoldProductModel
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }
