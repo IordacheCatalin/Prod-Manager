@@ -1,10 +1,10 @@
-﻿@model IEnumerable<Prod_Manger.ViewModel.ProductViewModel>
+﻿@model IEnumerable<Prod_Manger.Models.Domain.SoldProductModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Sell";
 }
 
-<h1>Index</h1>
+<h1>Sell</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -82,7 +82,6 @@
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                <a asp-action="Sell" asp-route-id="@item.Id">Sold</a>
             </td>
         </tr>
 }

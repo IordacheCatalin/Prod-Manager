@@ -1,26 +1,28 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Prod_Manger.Interface;
 using Prod_Manger.Models.Domain;
-using Prod_Manger.Repository;
+using Prod_Manger.Services.CRUD;
+using Prod_Manger.Services.Sell;
 using Prod_Manger.ViewModel;
-using System.Drawing.Drawing2D;
 
 
 namespace Prod_Manger.Controllers
 {
     public class ProductsController : Controller
     {
-        private readonly IProductsRepository _productsRepository;
+        private readonly ICRUD<ProductModel> _products;
+        private readonly ISellMethods _sellMethods;
 
-        public ProductsController(ProductsRepository productsRepository)
+        public ProductsController(ICRUD<ProductModel> products,
+               ISellMethods sellMethods)
         {
-            _productsRepository = productsRepository;
+            _products = products;
+            _sellMethods = sellMethods;
         }
 
         [HttpGet]
         public IActionResult Index()
         {
-            var products = _productsRepository.GetProducts();
+            var products = _products.GetAll();
 
 
             var productViewList = new List<ProductViewModel>();
@@ -59,14 +61,14 @@ namespace Prod_Manger.Controllers
             if (ModelState.IsValid)
             {
                 TryUpdateModelAsync(product);
-                _productsRepository.AddProduct(product);
+                _products.Add(product);
             }
             return RedirectToAction("Index");
         }
 
         public IActionResult Edit(int id)
         {
-            ProductModel product = _productsRepository.GetProductById(id);
+            ProductModel product = _products.GetById(id);
             return View("Edit", product);
         }
         [HttpPost]
@@ -75,7 +77,7 @@ namespace Prod_Manger.Controllers
         {
             ProductModel product = new();
             TryUpdateModelAsync(product);
-            _productsRepository.UpdateProduct(product);
+            _products.Update(product);
 
             return RedirectToAction("Index");
         }
@@ -83,21 +85,30 @@ namespace Prod_Manger.Controllers
         [HttpGet]
         public IActionResult Details(int id)
         {
-            ProductModel product = _productsRepository.GetProductById(id);
+            ProductModel product = _products.GetById(id);
             return View("Details", product);
         }
 
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            ProductModel product = _productsRepository.GetProductById(id);
+            ProductModel product = _products.GetById(id);
             return View("Delete", product);
         }
 
         [HttpPost]
         public IActionResult Delete(int id, IFormCollection collection)
         {
-            _productsRepository.DeleteProduct(id);
+            _products.Delete(id);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult Sell(int id, IFormCollection collection)
+        {
+            // Call the Sell method from SellMethods service to sell a product
+            _sellMethods.Sold(id);
+
             return RedirectToAction("Index");
         }
 

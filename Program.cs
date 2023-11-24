@@ -1,8 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Prod_Manger.Data;
-using Prod_Manger.Repository;
-using AutoMapper;
+using Prod_Manger.Services.CRUD;
+using Prod_Manger.Services.Sell;
+using Prod_Manger.Models.Domain;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,7 +15,14 @@ builder.Services.AddDbContext<ProdManagerDbContext>(options =>
                               options.UseSqlServer(builder.Configuration.GetConnectionString("ProdManagerConnectionString")));
 
 builder.Services.AddTransient<ProdManagerDbContext, ProdManagerDbContext>();
-builder.Services.AddTransient<ProductsRepository, ProductsRepository>();
+
+builder.Services.AddTransient<ICRUD<ProductModel>, CRUD<ProductModel>>();
+builder.Services.AddTransient<ICRUD<ClientModel>, CRUD<ClientModel>>();
+builder.Services.AddTransient<ICRUD<SoldProductModel>, CRUD<SoldProductModel>>();
+
+builder.Services.AddTransient<ISellMethods, SellMethods>();
+
+
 builder.Services.AddSession();
 
 
