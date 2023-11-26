@@ -106,10 +106,20 @@ namespace Prod_Manger.Controllers
         [HttpPost]
         public IActionResult Sell(int id, IFormCollection collection)
         {
-            // Call the Sell method from SellMethods service to sell a product
-            _sellMethods.Sold(id);
+            try
+            {
+                _sellMethods.Sold(id);
 
-            return RedirectToAction("Index");
+                return Json(new { success = true });
+              
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred while selling the product: {ex.Message}");
+
+                // Return error status and message in JSON format
+                return Json(new { success = false, errorMessage = "An error occurred while selling the product." });
+            }
         }
 
     }

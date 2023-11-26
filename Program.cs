@@ -19,6 +19,7 @@ builder.Services.AddTransient<ProdManagerDbContext, ProdManagerDbContext>();
 builder.Services.AddTransient<ICRUD<ProductModel>, CRUD<ProductModel>>();
 builder.Services.AddTransient<ICRUD<ClientModel>, CRUD<ClientModel>>();
 builder.Services.AddTransient<ICRUD<SoldProductModel>, CRUD<SoldProductModel>>();
+builder.Services.AddTransient<ICRUD<CategoryModel>, CRUD<CategoryModel>>();
 
 builder.Services.AddTransient<ISellMethods, SellMethods>();
 

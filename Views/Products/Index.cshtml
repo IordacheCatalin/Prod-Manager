@@ -84,10 +84,14 @@
                     <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                     <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                     <form asp-action="Sell" asp-route-id="@item.Id" method="post">
-                        <button type="submit">Sold</button>
+                        <button onclick="sellProduct(@item.Id)" type="submit">Sold</button>
                     </form>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+@section scripts {
+<script src="~/js/Services.js" asp-append-version="true"></script>
+}

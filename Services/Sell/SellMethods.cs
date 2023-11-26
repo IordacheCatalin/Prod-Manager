@@ -31,7 +31,7 @@ namespace Prod_Manger.Services.Sell
                 {
                     // Assign properties from the sold client to the SoldProduct entity
                     // Adjust property assignments based on your SoldProduct entity structure
-                    Id = soldProduct.Id,
+                    Id = new(),
                     Name = soldProduct.Name,
                     Description = soldProduct.Description,
                     Category = soldProduct.Category,
@@ -42,15 +42,22 @@ namespace Prod_Manger.Services.Sell
                     SellPriceNoVAT = soldProduct.SellPriceNoVAT,
                     BuyDate = soldProduct.BuyDate,
                     SellDate = soldProduct.SellDate
-                   
+
                 };
 
-                // Add the client data to the SoldProducts table
-                _context.SoldProducts.Add(soldItem);
-                _context.SaveChanges();
-
-                // Remove the sold product from the Products table
-                _context.Product.Remove(soldProduct); // Ensure this matches the name of the Products DbSet
+                if (soldProduct.Buc == 1)
+                {
+                    soldItem.Buc = 1;
+                    _context.SoldProducts.Add(soldItem);
+                    _context.Product.Remove(soldProduct);
+                }
+                else if (soldProduct.Buc > 1)
+                {
+                    soldProduct.Buc = soldProduct.Buc - 1;
+                    soldItem.Buc = 1;
+                    _context.Product.Update(soldProduct);
+                    _context.SoldProducts.Add(soldItem);
+                }
                 _context.SaveChanges();
             }
         }
