@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Prod_Manger.Models.Domain;
 using Prod_Manger.ViewModel;
+using Prod_Manger.ViewModel.CategoryViewModel.Primarycategory;
 
 namespace Prod_Manger.Data
 {

@@ -1,8 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Prod_Manger.Models.Domain;
 using Prod_Manger.Services.CRUD;
+using Prod_Manger.Services.GetCategories;
 using Prod_Manger.Services.Sell;
 using Prod_Manger.ViewModel;
+using Prod_Manger.ViewModel.CategoryViewModel.Primarycategory;
+using Prod_Manger.ViewModel.CategoryViewModel.SubCategory1;
 
 
 namespace Prod_Manger.Controllers
@@ -11,12 +15,18 @@ namespace Prod_Manger.Controllers
     {
         private readonly ICRUD<ProductModel> _products;
         private readonly ISellMethods _sellMethods;
+        private readonly ICRUD<CategoryModel> _categories;
+        private readonly IGetcatagories _getcategories;
 
         public ProductsController(ICRUD<ProductModel> products,
-               ISellMethods sellMethods)
+                                  ISellMethods sellMethods,
+                                  ICRUD<CategoryModel> categories,
+                                  IGetcatagories getcategories)
         {
             _products = products;
             _sellMethods = sellMethods;
+            _categories = categories;
+            _getcategories = getcategories;
         }
 
         [HttpGet]
@@ -29,7 +39,7 @@ namespace Prod_Manger.Controllers
             foreach (var product in products)
             {
                 var productViewModel = new ProductViewModel()
-                {     
+                {
                     Id = product.Id,
                     Name = product.Name,
                     Description = product.Description,
@@ -50,6 +60,31 @@ namespace Prod_Manger.Controllers
 
         public IActionResult Create()
         {
+            //var categories = _categories.GetAll().Select(category => new SelectListItem
+            //{
+            //    Value = category.Id.ToString(),
+            //    Text = category.Name
+            //}).ToList() ?? new List<SelectListItem>();
+
+            //ViewBag.Categories = categories;
+
+            var categories = _categories.GetAll();
+
+            var categoriesList = new PrimaryCategoryResponse();
+
+            foreach (var category in categories)
+            {
+                var categoryViewModel = new CategoryViewModel
+                {
+                    Name = category.Name
+                };
+                categoriesList.CategoryName.Add(categoryViewModel);
+            }
+
+            ViewBag.dataCategory = categoriesList;
+
+            ViewBag.Subcategory1List = new SubCatagoryResponse();
+
             return View("Create");
         }
 
@@ -65,6 +100,14 @@ namespace Prod_Manger.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public IActionResult GetSubcategory1(string categoryName)
+        {
+            var subcategoryResponse = _getcategories.GetSubcategory1ForCategory(categoryName);
+            return Json(subcategoryResponse);
+        }
+
 
         public IActionResult Edit(int id)
         {
@@ -111,7 +154,7 @@ namespace Prod_Manger.Controllers
                 _sellMethods.Sold(id);
 
                 return Json(new { success = true });
-              
+
             }
             catch (Exception ex)
             {

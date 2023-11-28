@@ -22,6 +22,8 @@ namespace Prod_Manger.Controllers
 
         public IActionResult Create()
         {
+
+
             return View("Create");
         }
 

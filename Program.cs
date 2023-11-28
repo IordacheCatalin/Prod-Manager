@@ -4,6 +4,7 @@ using Prod_Manger.Data;
 using Prod_Manger.Services.CRUD;
 using Prod_Manger.Services.Sell;
 using Prod_Manger.Models.Domain;
+using Prod_Manger.Services.GetCategories;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +23,7 @@ builder.Services.AddTransient<ICRUD<SoldProductModel>, CRUD<SoldProductModel>>()
 builder.Services.AddTransient<ICRUD<CategoryModel>, CRUD<CategoryModel>>();
 
 builder.Services.AddTransient<ISellMethods, SellMethods>();
+builder.Services.AddTransient<IGetcatagories, GetCategories>();
 
 
 builder.Services.AddSession();
