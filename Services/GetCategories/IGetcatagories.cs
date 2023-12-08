@@ -7,6 +7,6 @@ namespace Prod_Manger.Services.GetCategories
     public interface IGetcatagories
     {
         public DbSet<CategoryModel> GetAllcategories();
-        public SubCatagoryResponse GetSubcategory1ForCategory(string categoryName);
+        public SubCatagoryResponse GetSubcategoryForCategory(string categoryName);
     }
 }

@@ -4,9 +4,9 @@
     {
         public SubCatagoryResponse()
         {
-            subCategory1 = new List<SubCategoryViewModel>();
+            subCategory = new List<SubCategoryViewModel>();
         }
 
-        public List<SubCategoryViewModel> subCategory1 { get; set; }
+        public List<SubCategoryViewModel> subCategory { get; set; }
     }
 }

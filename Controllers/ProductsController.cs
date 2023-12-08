@@ -102,9 +102,9 @@ namespace Prod_Manger.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetSubcategory1(string categoryName)
+        public IActionResult GetSubcategory(string categoryName)
         {
-            var subcategoryResponse = _getcategories.GetSubcategory1ForCategory(categoryName);
+            var subcategoryResponse = _getcategories.GetSubcategoryForCategory(categoryName);
             return Json(subcategoryResponse);
         }
 

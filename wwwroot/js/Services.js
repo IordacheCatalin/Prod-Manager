@@ -1,20 +1,49 @@
-﻿$(document).ready(function () {
-    $('#ProductCategory').change(function () {
-        var selectedCategory = $(this).val();
+﻿//$(document).ready(function () {
+//    $('#ProductCategory').change(function () {
+//        var selectedCategory = $(this).val();
 
+//        if (selectedCategory) {
+//            $.ajax({
+//                url: '/Products/GetSubcategory',
+//                data: { categoryName: selectedCategory },
+//                type: 'GET',
+//                success: function (response) {
+//                    var subcategoryDropdown = $('#SubCategory');
+//                    subcategoryDropdown.empty();
+//                    subcategoryDropdown.append($('<option>').text('Select a subcategory'));
+
+//                    $.each(response.subCategory, function (index, Item) {
+//                        subcategoryDropdown.append($('<option>').text(Item.subCategory).val(Item.subCategory));
+//                        console.log(Item.subCategory); // Log individual subcategory names
+//                    });
+//                },
+//                error: function () {
+//                    // Handle error if any
+//                }
+//            });
+//        } else {
+//            $('#SubCategory').empty();
+//        }
+//    });
+//});
+
+function populateDropdown(categorySelector, subcategorySelector, categoryType) {
+    $(categorySelector).change(function () {
+        var selectedCategory = $(this).val();
+        debugger
         if (selectedCategory) {
             $.ajax({
-                url: '/Products/GetSubcategory1',
+                url: '/Products/Get' + categoryType, // Dynamically change the URL based on category type
                 data: { categoryName: selectedCategory },
                 type: 'GET',
                 success: function (response) {
-                    var subcategoryDropdown = $('#SubCategory1');
+                    var subcategoryDropdown = $(subcategorySelector);
                     subcategoryDropdown.empty();
-                    subcategoryDropdown.append($('<option>').text('Select a subcategory'));
+                    subcategoryDropdown.append($('<option>').text('Select a ' + categoryType.toLowerCase()));
 
-                    $.each(response.subCategory1, function (index, subCategory) {
-                        subcategoryDropdown.append($('<option>').text(subCategory.subCategory1).val(subCategory.subCategory1));
-                        console.log(subCategory.subCategory1); // Log individual subcategory names
+                    $.each(response[categoryType], function (index, Item) {
+                        subcategoryDropdown.append($('<option>').text(Item[categoryType]).val(Item[categoryType]));
+                        console.log(Item[categoryType]); // Log individual category type names
                     });
                 },
                 error: function () {
@@ -22,9 +51,19 @@
                 }
             });
         } else {
-            $('#SubCategory1').empty();
+            $(subcategorySelector).empty();
         }
     });
+}
+
+// Usage for ProductCategory and SubCategory
+$(document).ready(function () {
+    populateDropdown('#ProductCategory', '#SubCategory', 'subCategory');
+});
+
+// Usage for SubCategory and SubSubCategory
+$(document).ready(function () {
+    populateDropdown('#SubCategory', '#SubSubCategory', 'SubSubCategory');
 });
 
 function sellProduct(productId) {
@@ -37,7 +76,6 @@ function sellProduct(productId) {
         success: function (response) {
             if (response.success) {
                 alert("Product sold successfully!");
-
                
                 window.location.href = "/Products/Index";
             } else {

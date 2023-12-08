@@ -2,6 +2,6 @@
 {
     public class SubCategoryViewModel
     {
-        public string? SubCategory1 { get; set; }
+        public string? SubCategory { get; set; }
     }
 }

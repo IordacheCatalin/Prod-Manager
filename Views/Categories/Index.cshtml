@@ -16,16 +16,16 @@
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SubCategory1)
+                @Html.DisplayNameFor(model => model.SubCategory)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SubCategory2)
+                @Html.DisplayNameFor(model => model.SubSubCategory)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SubCategory3)
+                @Html.DisplayNameFor(model => model.SubSubSubCategory)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SubCategory4)
+                @Html.DisplayNameFor(model => model.SubSubSubSubCategory)
             </th>
             <th></th>
         </tr>
@@ -37,16 +37,16 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SubCategory1)
+                @Html.DisplayFor(modelItem => item.SubCategory)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SubCategory2)
+                    @Html.DisplayFor(modelItem => item.SubSubCategory)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SubCategory3)
+                    @Html.DisplayFor(modelItem => item.SubSubSubCategory)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SubCategory4)
+                    @Html.DisplayFor(modelItem => item.SubSubSubSubCategory)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
