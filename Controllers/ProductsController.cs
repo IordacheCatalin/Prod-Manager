@@ -83,8 +83,6 @@ namespace Prod_Manger.Controllers
 
             ViewBag.dataCategory = categoriesList;
 
-            ViewBag.Subcategory1List = new SubCatagoryResponse();
-
             return View("Create");
         }
 
@@ -102,11 +100,20 @@ namespace Prod_Manger.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetSubcategory(string categoryName)
+        public IActionResult GetSubCategory(string categoryName)
         {
-            var subcategoryResponse = _getcategories.GetSubcategoryForCategory(categoryName);
-            return Json(subcategoryResponse);
+            var subCategoryResponse = _getcategories.GetSubCategoryForCategory(categoryName);
+            return Json(subCategoryResponse);
         }
+
+
+        [HttpGet]
+        public IActionResult GetSubSubCategory(string categoryName, string subCategory)
+        {
+            var subSubCategoryResponse = _getcategories.GetSubSubCategoryForCategory(categoryName, subCategory);
+            return Json(subSubCategoryResponse);
+        }
+
 
 
         public IActionResult Edit(int id)

@@ -1,8 +1,8 @@
 ﻿namespace Prod_Manger.ViewModel.CategoryViewModel.SubCategory1
 {
-    public class SubCatagoryResponse
+    public class SubCategoryResponse
     {
-        public SubCatagoryResponse()
+        public SubCategoryResponse()
         {
             subCategory = new List<SubCategoryViewModel>();
         }

@@ -21,45 +21,67 @@ namespace Prod_Manger.Services.GetCategories
         }
 
 
-        public SubCatagoryResponse GetSubcategoryForCategory(string categoryName)
+        public SubCategoryResponse GetSubCategoryForCategory(string categoryName)
         {
-            var response = new SubCatagoryResponse();
-            var selectedSubCatagory = _context.Categories.FirstOrDefault(c => c.Name == categoryName);
+            var response = new SubCategoryResponse();
 
-            if (selectedSubCatagory != null && !string.IsNullOrEmpty(selectedSubCatagory.SubCategory))
+            // Fetch subcategories for the specified category name
+            var selectedCategory = _context.Categories.FirstOrDefault(c => c.Name == categoryName);
+
+            if (selectedCategory != null && !string.IsNullOrEmpty(selectedCategory.SubCategory))
             {
-                var subcategoryList = selectedSubCatagory.SubCategory.Split(',').ToList();
+                var subcategoryList = selectedCategory.SubCategory
+                    .Split(',', StringSplitOptions.RemoveEmptyEntries) // Split subcategories and remove empty entries
+                    .Select(x => new SubCategoryViewModel { SubCategory = x.Trim() }) // Create SubCategoryViewModel objects
+                    .ToList();
 
-                // Populate the CategoryViewModel list in the PrimaryCategoryResponse
-                response.subCategory = subcategoryList.Select(x => new SubCategoryViewModel
-                {
-                    SubCategory = x
-                }).ToList();
+                response.subCategory = subcategoryList;
             }
+
             return response;
         }
 
-        public SubSubCategoryResponse GetSubSubcategoryForCategory(string categoryName, string subCategory)
+        public SubSubCategoryResponse GetSubSubCategoryForCategory(string categoryName, string subCategory)
         {
             var response = new SubSubCategoryResponse();
 
-            var selectedSubSubCatagory = _context.Categories
+            // Retrieve a record matching both category and subcategory names
+            var selectedSubSubCategory = _context.Categories
                 .FirstOrDefault(c => c.Name == categoryName && c.SubCategory == subCategory);
 
-            if (selectedSubSubCatagory != null && !string.IsNullOrEmpty(selectedSubSubCatagory.SubSubCategory))
+            if (selectedSubSubCategory != null && !string.IsNullOrEmpty(selectedSubSubCategory.SubSubCategory))
             {
-                var subsubcategoryList = selectedSubSubCatagory.SubSubCategory.Split(',').ToList();
+                var subSubcategoryList = selectedSubSubCategory.SubSubCategory
+                    .Split(',', StringSplitOptions.RemoveEmptyEntries)
+                    .Select(x => new SubSubCategoryViewModel { SubSubCategory = x.Trim() })
+                    .ToList();
 
-                // Populate the SubSubCategoryViewModel list in the SubSubCategoryResponse
-                response.subSubCategory = subsubcategoryList.Select(x => new SubSubCategoryViewModel
-                {
-                    SubSubCategory = x
-                }).ToList();
+                response.subSubCategory = subSubcategoryList;
             }
 
             return response;
         }
 
+        //public SubSubCategoryResponse GetSubSubcategoryForCategory(string categoryName, string subCategory)
+        //{
+        //    var response = new SubSubCategoryResponse();
+
+        //    var selectedSubSubCatagory = _context.Categories
+        //        .FirstOrDefault(c => c.Name == categoryName && c.SubCategory == subCategory);
+
+        //    if (selectedSubSubCatagory != null && !string.IsNullOrEmpty(selectedSubSubCatagory.SubSubCategory))
+        //    {
+        //        var subsubcategoryList = selectedSubSubCatagory.SubSubCategory.Split(',').ToList();
+
+        //        // Populate the SubSubCategoryViewModel list in the SubSubCategoryResponse
+        //        response.subSubCategory = subsubcategoryList.Select(x => new SubSubCategoryViewModel
+        //        {
+        //            SubSubCategory = x
+        //        }).ToList();
+        //    }
+
+        //    return response;
+        //}
 
 
     }
