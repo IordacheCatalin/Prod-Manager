@@ -6,6 +6,10 @@
         public string Name { get; set; }
         public string Description { get; set; }
         public string? Category { get; set; }
+        public string? SubCategory { get; set; }
+        public string? SubSubCategory { get; set; }
+        public string? SubSubSubCategory { get; set; }
+        public string? SubSubSubSubCategory { get; set; }
         public int Buc { get; set; }
         public decimal BuyPriceVAT { get; set; }
         public decimal BuyPriceNoVAT { get; set; }

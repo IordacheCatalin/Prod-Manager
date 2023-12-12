@@ -1,60 +1,21 @@
-﻿//$(document).ready(function () {
-//    $('#ProductCategory').change(function () {
-//        var selectedCategory = $(this).val();
-
-//        if (selectedCategory) {
-//            $.ajax({
-//                url: '/Products/GetSubcategory',
-//                data: { categoryName: selectedCategory },
-//                type: 'GET',
-//                success: function (response) {
-//                    var subcategoryDropdown = $('#SubCategory');
-//                    subcategoryDropdown.empty();
-//                    subcategoryDropdown.append($('<option>').text('Select a subcategory'));
-
-//                    $.each(response.subCategory, function (index, Item) {
-//                        subcategoryDropdown.append($('<option>').text(Item.subCategory).val(Item.subCategory));
-//                        console.log(Item.subCategory); // Log individual subcategory names
-//                    });
-//                },
-//                error: function () {
-//                    // Handle error if any
-//                }
-//            });
-//        } else {
-//            $('#SubCategory').empty();
-//        }
-//    });
-//});
-
-function populateDropdown(sourceSelector, targetSelector, categoryType) {
-    $(sourceSelector).change(function () {
-        var selectedCategory = $(sourceSelector).val();
-        var selectedSubCategory = $(targetSelector).val(); // Get the selected subcategory
-
+﻿$(document).ready(function () {
+    $('#ProductCategory').change(function () {
+        const selectedCategory = $(this).val();
+        const subcategoryShow = $('#subcategory');
         if (selectedCategory) {
-            var url = '/Products/Get' + categoryType;
-
-            // If both category and subcategory are selected, update the URL and data
-            if (selectedSubCategory) {
-                url += 'ForCategoryAndSubcategory';
-            }
-
             $.ajax({
-                url: url,
-                data: {
-                    categoryName: selectedCategory,
-                    subCategory: selectedSubCategory
-                },
+                url: '/Products/GetSubcategory',
+                data: { categoryName: selectedCategory },
                 type: 'GET',
                 success: function (response) {
-                    var dropdown = $(targetSelector);
-                    dropdown.empty();
-                    dropdown.append($('<option>').text('Select a ' + categoryType.toLowerCase()));
+                    var subcategoryDropdown = $('#SubCategory');
+                    subcategoryDropdown.empty();
+                    subcategoryDropdown.append($('<option>').text('Select a SubCategory'));
+                    subcategoryShow.show();
 
-                    $.each(response[categoryType], function (index, item) {
-                        dropdown.append($('<option>').text(item[categoryType]).val(item[categoryType]));
-                        console.log(item[categoryType]); // Log individual category type names
+                    $.each(response.subCategory, function (index, Item) {
+                        subcategoryDropdown.append($('<option>').text(Item.subCategory).val(Item.subCategory));
+                        console.log(Item.subCategory); // Log individual subcategory names
                     });
                 },
                 error: function () {
@@ -62,19 +23,103 @@ function populateDropdown(sourceSelector, targetSelector, categoryType) {
                 }
             });
         } else {
-            $(targetSelector).empty();
+            $('#SubCategory').empty();
         }
     });
-}
 
-// Usage for Category and SubCategory
-$(document).ready(function () {
-    populateDropdown('#ProductCategory', '#SubCategory', 'subCategory');
-});
+    $('#SubCategory').change(function () {
+        const selectedCategory = $('#ProductCategory').val(); // Assuming #Category is the ID of your category dropdown
+        const selectedSubCategory = $('#SubCategory').val();
+        const subcategoryDropdown = $('#SubSubCategory');
+        const subsubcategoryShow = $('#subsubcategory');
 
-// Usage for Category, SubCategory, and SubSubCategory
-$(document).ready(function () {
-    populateDropdown('#SubCategory', '#SubSubCategory', 'subSubCategory');
+        if (selectedCategory && selectedSubCategory) {
+            $.ajax({
+                url: '/Products/GetSubSubCategory',
+                data: { categoryName: selectedCategory, subCategory: selectedSubCategory }, // Send both category and subcategory
+                type: 'GET',
+                success: function (response) {
+                    subcategoryDropdown.empty();
+                    subcategoryDropdown.append($('<option>').text('Select a SubSubCategory'));
+                    subsubcategoryShow.show();
+                    $.each(response.subSubCategory, function (index, Item) {
+                        subcategoryDropdown.append($('<option>').text(Item.subSubCategory).val(Item.subSubCategory));
+                        console.log(Item.subSubCategory); // Log individual subcategory names
+                    });
+                },
+                error: function () {
+                    // Handle error if any
+                }
+            });
+        } else {
+            subcategoryDropdown.empty();
+            subcategoryDropdown.append($('<option>').text('Select both category and subcategory'));
+        }
+    });
+
+    $('#SubSubCategory').change(function () {
+        const selectedCategory = $('#ProductCategory').val(); // Assuming #Category is the ID of your category dropdown
+        const selectedSubCategory = $('#SubCategory').val();
+        const selectedSubSubCategory = $('#SubSubCategory').val();
+        const subcategoryDropdown = $('#SubSubSubCategory');
+        const subsubsubcategoryShow = $('#subsubsubcategory');
+
+        if (selectedCategory && selectedSubCategory) {
+            $.ajax({
+                url: '/Products/GetSubSubSubCategory',
+                data: { categoryName: selectedCategory, subCategory: selectedSubCategory, subSubCategory: selectedSubSubCategory }, // Send both category and subcategory
+                type: 'GET',
+                success: function (response) {
+                    subcategoryDropdown.empty();
+                    subcategoryDropdown.append($('<option>').text('Select a SubSubSubCategory'));
+                    subsubsubcategoryShow.show();
+                    $.each(response.subSubSubCategory, function (index, Item) {
+                        subcategoryDropdown.append($('<option>').text(Item.subSubSubCategory).val(Item.subSubSubCategory));
+                        console.log(Item.subSubSubCategory); // Log individual subcategory names
+                    });
+                },
+                error: function () {
+                    // Handle error if any
+                }
+            });
+        } else {
+            subcategoryDropdown.empty();
+            subcategoryDropdown.append($('<option>').text('Select first category, subcategory, subsubcategory'));
+        }
+    });
+
+    $('#SubSubSubCategory').change(function () {
+        const selectedCategory = $('#ProductCategory').val(); // Assuming #Category is the ID of your category dropdown
+        const selectedSubCategory = $('#SubCategory').val();
+        const selectedSubSubCategory = $('#SubSubCategory').val();
+        const selectedSubSubSubCategory = $('#SubSubSubCategory').val();
+        const subcategoryDropdown = $('#SubSubSubSubCategory');
+        const subsubsubsubcategoryShow = $('#subsubsubsubcategory');
+
+        if (selectedCategory && selectedSubCategory) {
+            $.ajax({
+                url: '/Products/GetSubSubSubSubCategory',
+                data: { categoryName: selectedCategory, subCategory: selectedSubCategory, subSubCategory: selectedSubSubCategory, subSubSubCategory: selectedSubSubSubCategory }, // Send both category and subcategory
+                type: 'GET',
+                success: function (response) {
+                    subcategoryDropdown.empty();
+                    subcategoryDropdown.append($('<option>').text('Select a SubSubSubSubCategory'));
+                    subsubsubsubcategoryShow.show();
+                    $.each(response.subSubSubSubCategory, function (index, Item) {
+                        subcategoryDropdown.append($('<option>').text(Item.subSubSubSubCategory).val(Item.subSubSubSubCategory));
+                        console.log(Item.subSubSubSubCategory); // Log individual subcategory names
+                    });
+                },
+                error: function () {
+                    // Handle error if any
+                }
+            });
+        } else {
+            subcategoryDropdown.empty();
+            subcategoryDropdown.append($('<option>').text('Select first category, subcategory, subsubcategory, subsubsubcategory'));
+        }
+    });
+
 });
 
 function sellProduct(productId) {

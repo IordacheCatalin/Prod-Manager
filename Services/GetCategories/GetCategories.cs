@@ -4,6 +4,8 @@ using Prod_Manger.Models.Domain;
 using Prod_Manger.ViewModel.CategoryViewModel.Primarycategory;
 using Prod_Manger.ViewModel.CategoryViewModel.SubCategory1;
 using Prod_Manger.ViewModel.CategoryViewModel.SubSubCategory;
+using Prod_Manger.ViewModel.CategoryViewModel.SubSubSubCategory;
+using Prod_Manger.ViewModel.CategoryViewModel.SubSubSubSubCategory;
 
 namespace Prod_Manger.Services.GetCategories
 {
@@ -25,14 +27,14 @@ namespace Prod_Manger.Services.GetCategories
         {
             var response = new SubCategoryResponse();
 
-            // Fetch subcategories for the specified category name
-            var selectedCategory = _context.Categories.FirstOrDefault(c => c.Name == categoryName);
+            // Fetch all categories that match the specified category name
+            var selectedSubCategory = _context.Categories.Where(c => c.Name == categoryName).ToList();
 
-            if (selectedCategory != null && !string.IsNullOrEmpty(selectedCategory.SubCategory))
+            if (selectedSubCategory != null && selectedSubCategory.Any())
             {
-                var subcategoryList = selectedCategory.SubCategory
-                    .Split(',', StringSplitOptions.RemoveEmptyEntries) // Split subcategories and remove empty entries
-                    .Select(x => new SubCategoryViewModel { SubCategory = x.Trim() }) // Create SubCategoryViewModel objects
+                var subcategoryList = selectedSubCategory
+                    .SelectMany(c => (c.SubCategory ?? string.Empty).Split(',', StringSplitOptions.RemoveEmptyEntries)
+                        .Select(x => new SubCategoryViewModel { SubCategory = x.Trim() }))
                     .ToList();
 
                 response.subCategory = subcategoryList;
@@ -40,19 +42,19 @@ namespace Prod_Manger.Services.GetCategories
 
             return response;
         }
-
         public SubSubCategoryResponse GetSubSubCategoryForCategory(string categoryName, string subCategory)
         {
             var response = new SubSubCategoryResponse();
 
-            // Retrieve a record matching both category and subcategory names
-            var selectedSubSubCategory = _context.Categories
-                .FirstOrDefault(c => c.Name == categoryName && c.SubCategory == subCategory);
+            // Retrieve all records matching both category and subcategory names
+            var selectedSubSubCategories = _context.Categories
+                .Where(c => c.Name == categoryName && c.SubCategory == subCategory)
+                .ToList(); // Fetch data from the database
 
-            if (selectedSubSubCategory != null && !string.IsNullOrEmpty(selectedSubSubCategory.SubSubCategory))
+            if (selectedSubSubCategories != null && selectedSubSubCategories.Any())
             {
-                var subSubcategoryList = selectedSubSubCategory.SubSubCategory
-                    .Split(',', StringSplitOptions.RemoveEmptyEntries)
+                var subSubcategoryList = selectedSubSubCategories
+                    .SelectMany(c => (c.SubSubCategory ?? string.Empty).Split(',', StringSplitOptions.RemoveEmptyEntries))
                     .Select(x => new SubSubCategoryViewModel { SubSubCategory = x.Trim() })
                     .ToList();
 
@@ -62,27 +64,49 @@ namespace Prod_Manger.Services.GetCategories
             return response;
         }
 
-        //public SubSubCategoryResponse GetSubSubcategoryForCategory(string categoryName, string subCategory)
-        //{
-        //    var response = new SubSubCategoryResponse();
+        public SubSubSubCategoryResponse GetSubSubSubCategoryForCategory(string categoryName, string subCategory, string subSubCategory)
+        {
+            var response = new SubSubSubCategoryResponse();
 
-        //    var selectedSubSubCatagory = _context.Categories
-        //        .FirstOrDefault(c => c.Name == categoryName && c.SubCategory == subCategory);
+            // Retrieve all records matching both category and subcategory names
+            var selectedSubSubSubCategories = _context.Categories
+                .Where(c => c.Name == categoryName && c.SubCategory == subCategory && c.SubSubCategory == subSubCategory)
+                .ToList(); // Fetch data from the database
 
-        //    if (selectedSubSubCatagory != null && !string.IsNullOrEmpty(selectedSubSubCatagory.SubSubCategory))
-        //    {
-        //        var subsubcategoryList = selectedSubSubCatagory.SubSubCategory.Split(',').ToList();
+            if (selectedSubSubSubCategories != null && selectedSubSubSubCategories.Any())
+            {
+                var subSubSubcategoryList = selectedSubSubSubCategories
+                    .SelectMany(c => (c.SubSubSubCategory ?? string.Empty).Split(',', StringSplitOptions.RemoveEmptyEntries))
+                    .Select(x => new SubSubSubCategoryViewModel { SubSubSubCategory = x.Trim() })
+                    .ToList();
 
-        //        // Populate the SubSubCategoryViewModel list in the SubSubCategoryResponse
-        //        response.subSubCategory = subsubcategoryList.Select(x => new SubSubCategoryViewModel
-        //        {
-        //            SubSubCategory = x
-        //        }).ToList();
-        //    }
+                response.subSubSubCategory = subSubSubcategoryList;
+            }
 
-        //    return response;
-        //}
+            return response;
+        }
 
+        public SubSubSubSubCategoryResponse GetSubSubSubSubCategoryForCategory(string categoryName, string subCategory, string subSubCategory, string subSubSubCategory)
+        {
+            var response = new SubSubSubSubCategoryResponse();
+
+            // Retrieve all records matching both category and subcategory names
+            var selectedSubSubSubSubCategories = _context.Categories
+                .Where(c => c.Name == categoryName && c.SubCategory == subCategory && c.SubSubCategory == subSubCategory && c.SubSubSubCategory == subSubSubCategory) 
+                .ToList(); // Fetch data from the database
+
+            if (selectedSubSubSubSubCategories != null && selectedSubSubSubSubCategories.Any())
+            {
+                var subSubSubSubcategoryList = selectedSubSubSubSubCategories
+                    .SelectMany(c => (c.SubSubSubSubCategory ?? string.Empty).Split(',', StringSplitOptions.RemoveEmptyEntries))
+                    .Select(x => new SubSubSubSubCategoryViewModel { SubSubSubSubCategory = x.Trim() })
+                    .ToList();
+
+                response.subSubSubSubCategory = subSubSubSubcategoryList;
+            }
+
+            return response;
+        }
 
     }
 }

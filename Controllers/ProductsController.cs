@@ -44,6 +44,10 @@ namespace Prod_Manger.Controllers
                     Name = product.Name,
                     Description = product.Description,
                     Category = product.Category,
+                    SubCategory = product.SubCategory,
+                    SubSubCategory = product.SubSubCategory,
+                    SubSubSubCategory = product.SubSubSubCategory,
+                    SubSubSubSubCategory = product.SubSubSubSubCategory,
                     Buc = product.Buc,
                     BuyPriceVAT = product.BuyPriceVAT,
                     BuyPriceNoVAT = product.BuyPriceNoVAT,
@@ -112,6 +116,20 @@ namespace Prod_Manger.Controllers
         {
             var subSubCategoryResponse = _getcategories.GetSubSubCategoryForCategory(categoryName, subCategory);
             return Json(subSubCategoryResponse);
+        }
+
+        [HttpGet]
+        public IActionResult GetSubSubSubCategory(string categoryName, string subCategory, string subSubCategory)
+        {
+            var subSubSubCategoryResponse = _getcategories.GetSubSubSubCategoryForCategory(categoryName, subCategory, subSubCategory);
+            return Json(subSubSubCategoryResponse);
+        }
+
+        [HttpGet]
+        public IActionResult GetSubSubSubSubCategory(string categoryName, string subCategory, string subSubCategory, string subSubSubCategory)
+        {
+            var subSubSubSubCategoryResponse = _getcategories.GetSubSubSubSubCategoryForCategory(categoryName, subCategory, subSubCategory, subSubSubCategory);
+            return Json(subSubSubSubCategoryResponse);
         }
 
 

@@ -22,6 +22,18 @@
                 @Html.DisplayNameFor(model => model.Category)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.SubCategory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubSubCategory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubSubSubCategory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubSubSubSubCategory)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Buc)
             </th>
             <th>
@@ -54,6 +66,18 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubCategory)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubSubCategory)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubSubSubSubCategory)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Category)
