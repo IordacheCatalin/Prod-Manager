@@ -122,24 +122,23 @@
 
 });
 
-function sellProduct(productId) {
+function sellProduct(productId, quantity) {
     event.preventDefault();
-
+   /* let itemQuantity = document.getElementById("ItemQuantity_" + productId).value;*/
     $.ajax({
         type: "POST",
         url: "/Products/Sell",
-        data: { id: productId },
+        data: { id: productId, quantity: quantity },
         success: function (response) {
+         
             if (response.success) {
-                alert("Product sold successfully!");
-               
+                alert(`Product sold successfully!} pcs`);
                 window.location.href = "/Products/Index";
             } else {
                 alert("Error: " + response.errorMessage);
             }
         },
         error: function (xhr, status, error) {
-            
             alert("Error: Unable to sell the product.");
         }
     });

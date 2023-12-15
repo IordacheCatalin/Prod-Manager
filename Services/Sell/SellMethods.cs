@@ -14,12 +14,12 @@ namespace Prod_Manger.Services.Sell
             _products = products;
         }
 
-        public void Sold(int id)
+        public void SellItem(int id, int ItemQuantity)
         {
             // Retrieve the client from the current table
             var soldProduct = _products.GetById(id);
 
-            if (soldProduct != null)
+            if (soldProduct != null && ItemQuantity > 0 && ItemQuantity <= soldProduct.Buc)
             {
                 // Remove the client from the current table
 
@@ -45,23 +45,21 @@ namespace Prod_Manger.Services.Sell
 
                 };
 
-                if (soldProduct.Buc == 1)
-                {
-                    soldItem.Buc = 1;
+                if (ItemQuantity == 1)
+                {                 
                     _context.SoldProducts.Add(soldItem);
                     _context.Product.Remove(soldProduct);
                 }
                 else if (soldProduct.Buc > 1)
                 {
-                    soldProduct.Buc = soldProduct.Buc - 1;
-                    soldItem.Buc = 1;
+                    soldProduct.Buc -= ItemQuantity;
+                    soldItem.Buc += ItemQuantity;
                     _context.Product.Update(soldProduct);
                     _context.SoldProducts.Add(soldItem);
                 }
                 _context.SaveChanges();
             }
         }
-
 
     }
 }

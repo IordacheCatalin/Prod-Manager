@@ -172,11 +172,11 @@ namespace Prod_Manger.Controllers
         }
 
         [HttpPost]
-        public IActionResult Sell(int id, IFormCollection collection)
+        public IActionResult Sell(int id, int ItemQuantity, IFormCollection collection)
         {
             try
             {
-                _sellMethods.Sold(id);
+                _sellMethods.SellItem(id, ItemQuantity);
 
                 return Json(new { success = true });
 
@@ -185,7 +185,7 @@ namespace Prod_Manger.Controllers
             {
                 Console.WriteLine($"An error occurred while selling the product: {ex.Message}");
 
-                // Return error status and message in JSON format
+            
                 return Json(new { success = false, errorMessage = "An error occurred while selling the product." });
             }
         }
