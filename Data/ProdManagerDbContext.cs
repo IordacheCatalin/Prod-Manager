@@ -15,5 +15,6 @@ namespace Prod_Manger.Data
         public DbSet<SoldProductModel> SoldProducts { get; set; }
         public DbSet<CategoryModel> Categories { get; set; }
 
+        public DbSet<TotalBuyAndSellModel> TotalBuyAndSell { get; set; }
     }
 }

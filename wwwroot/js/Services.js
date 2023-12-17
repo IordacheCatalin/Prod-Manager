@@ -120,20 +120,26 @@
         }
     });
 
+    $('#sell-item-form').on('submit', function (event) {
+        console.log('submit')
+        event.preventDefault();
+        let productId = document.getElementById("productId").value;
+        let ItemQuantity = document.getElementById("ItemQuantity_" + productId).value;
+       
+        sellProduct(productId, ItemQuantity); // Execute the sellProduct function
+    });    
 });
 
-function sellProduct(productId, quantity) {
-    event.preventDefault();
-   /* let itemQuantity = document.getElementById("ItemQuantity_" + productId).value;*/
+function sellProduct(productId, ItemQuantity) {
     $.ajax({
         type: "POST",
         url: "/Products/Sell",
-        data: { id: productId, quantity: quantity },
+        data: { id: productId, ItemQuantity: ItemQuantity },
         success: function (response) {
-         
             if (response.success) {
-                alert(`Product sold successfully!} pcs`);
-                window.location.href = "/Products/Index";
+                let quantity = document.getElementById("ItemQuantity_" + productId).value;
+                alert(`Product sold successfully! ${quantity} pcs`);
+                window.location.href = "/Products/Index"; // Redirect on success
             } else {
                 alert("Error: " + response.errorMessage);
             }

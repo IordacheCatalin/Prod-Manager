@@ -110,21 +110,19 @@
                  @*    <form asp-action="Sell" asp-route-id="@item.Id" method="post">
                         <button onclick="sellProduct(@item.Id)" type="submit">Sold</button>
                     </form> *@
-                    <form asp-action="Sell" asp-route-id="@item.Id" method="post">
+                    <form asp-action="Sell" asp-route-id="@item.Id" id="sell-item-form" method="post">
                         <select id="ItemQuantity_@item.Id" name="ItemQuantity">
                             @for (int i = 1; i <= item.Buc; i++)
                             {
                                 <option value="@i">@i</option>
                             }
                         </select>
-                        <button onclick="sellProduct(@item.Id)" type="submit">Sold</button>
+                        <button id="btn-sell-item" type="submit">Sold</button>
                     </form>
                 </td>
             </tr>
+            <input value="@item.Id" type="hidden" id="productId"/>
         }
     </tbody>
 </table>
 
-@* @section scripts {
-<script src="~/js/Services.js" asp-append-version="true"></script>
-} *@

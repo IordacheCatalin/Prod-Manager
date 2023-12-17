@@ -54,7 +54,11 @@ namespace Prod_Manger.Controllers
                     SellPriceVAT = product.SellPriceVAT,
                     SellPriceNoVAT = product.SellPriceNoVAT,
                     BuyDate = product.BuyDate,
-                    SellDate = product.SellDate
+                    SellDate = product.SellDate,
+                    TotalBuyPriceVAT = product.TotalBuyPriceVAT,
+                    TotalBuyPriceNoVAT = product.TotalBuyPriceNoVAT,
+                    TotalSellPriceVAT = product.TotalSellPriceVAT,
+                    TotalSellPriceNoVAT = product.TotalSellPriceNoVAT,
                 };
                 productViewList.Add(productViewModel);
             }
@@ -172,13 +176,13 @@ namespace Prod_Manger.Controllers
         }
 
         [HttpPost]
-        public IActionResult Sell(int id, int ItemQuantity, IFormCollection collection)
+        public IActionResult Sell(int id, int ItemQuantity)
         {
             try
             {
                 _sellMethods.SellItem(id, ItemQuantity);
 
-                return Json(new { success = true });
+                return Json(new { success = true }); ;
 
             }
             catch (Exception ex)

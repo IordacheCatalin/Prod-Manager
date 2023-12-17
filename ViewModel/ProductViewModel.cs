@@ -17,5 +17,10 @@
         public decimal SellPriceNoVAT { get; set; }
         public DateTime BuyDate { get; set; }
         public DateTime SellDate { get; set; }
+
+        public decimal TotalBuyPriceVAT { get; set; }
+        public decimal TotalBuyPriceNoVAT { get; set; }
+        public decimal TotalSellPriceVAT { get; set; }
+        public decimal TotalSellPriceNoVAT { get; set; }
     }
 }

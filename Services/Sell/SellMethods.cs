@@ -53,7 +53,7 @@ namespace Prod_Manger.Services.Sell
                 else if (soldProduct.Buc > 1)
                 {
                     soldProduct.Buc -= ItemQuantity;
-                    soldItem.Buc += ItemQuantity;
+                    soldItem.Buc = ItemQuantity;
                     _context.Product.Update(soldProduct);
                     _context.SoldProducts.Add(soldItem);
                 }

@@ -21,6 +21,7 @@ builder.Services.AddTransient<ICRUD<ProductModel>, CRUD<ProductModel>>();
 builder.Services.AddTransient<ICRUD<ClientModel>, CRUD<ClientModel>>();
 builder.Services.AddTransient<ICRUD<SoldProductModel>, CRUD<SoldProductModel>>();
 builder.Services.AddTransient<ICRUD<CategoryModel>, CRUD<CategoryModel>>();
+builder.Services.AddTransient<ICRUD<TotalBuyAndSellModel>, CRUD<TotalBuyAndSellModel>>();
 
 builder.Services.AddTransient<ISellMethods, SellMethods>();
 builder.Services.AddTransient<IGetcatagories, GetCategories>();
