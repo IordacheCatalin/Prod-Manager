@@ -127,7 +127,14 @@
         let ItemQuantity = document.getElementById("ItemQuantity_" + productId).value;
        
         sellProduct(productId, ItemQuantity); // Execute the sellProduct function
-    });    
+    });   
+
+    $('.nav-link').click(function () {
+     
+        console.log("click")
+        $('.nav-link').removeClass("slideBar-item-active")
+        $(this).addClass("slideBar-item-active");
+    });
 });
 
 function sellProduct(productId, ItemQuantity) {

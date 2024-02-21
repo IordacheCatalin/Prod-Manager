@@ -78,13 +78,15 @@ namespace Prod_Manger.Controllers
 
             var categories = _categories.GetAll();
 
+            var uniqueCategoryNames = categories.Select(category => category.Name).Distinct();
+
             var categoriesList = new PrimaryCategoryResponse();
 
-            foreach (var category in categories)
+            foreach (var categoryName in uniqueCategoryNames)
             {
                 var categoryViewModel = new CategoryViewModel
                 {
-                    Name = category.Name
+                    Name = categoryName
                 };
                 categoriesList.CategoryName.Add(categoryViewModel);
             }
