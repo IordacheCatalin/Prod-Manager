@@ -1,0 +1,105 @@
+﻿.title-xxxlarge40, .text-xxxlarge40 {
+    font-size: 40px !important;
+}
+
+.title-xxxlarge, .text-xxxlarge {
+    font-size: 38px !important;
+}
+
+.title-xxxlarge36, .text-xxxlarge36 {
+    font-size: 36px !important;
+}
+
+.title-xxxlarge34, .text-xxxlarge34 {
+    font-size: 34px !important;
+}
+
+.title-xxxlarge32, .text-xxxlarge32 {
+    font-size: 32px !important;
+}
+
+.title-xxlarge, .text-xxlarge {
+    font-size: 30px !important;
+}
+
+.title-xxlarge28, .text-xxlarge28 {
+    font-size: 28px !important;
+}
+
+.title-xllarge, .text-xllarge {
+    font-size: 26px !important;
+}
+
+.title-xlarge, .text-xlarge {
+    font-size: 24px !important;
+}
+
+.title-large22, .text-large22 {
+    font-size: 22px !important;
+}
+
+.title-large, .text-large {
+    font-size: 20px !important;
+}
+
+.title-regular, .text-regular {
+    font-size: 18px !important;
+}
+
+
+
+.title-small, .text-small {
+    font-size: 16px !important;
+}
+
+
+.title-xsmall, .text-xsmall {
+    font-size: 14px !important;
+}
+
+.title-xxsmall, .text-xxsmall {
+    font-size: 12px !important;
+}
+
+.title-xxxsmall, .text-xxxsmall {
+    font-size: 10px !important;
+}
+
+
+.title-xxxlarge40, .title-xxxlarge36, .title-xxxlarge34, .title-xxxlarge32, .title-xxlarge28, .title-large22, .title-xxxlarge, .title-xxlarge, .title-xxlarge, .title-xlarge, .title-large, .title-small, .title-regular, .title-xsmall, .title-xxsmall, .title-xxsmall, .title-xxxsmall, .title-xxxxsmall {
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.text-xxxlarge40, .text-xxxlarge36, .text-xxxlarge34, .text-xxxlarge32, .text-xxlarge28, .text-large22,.text-xxxlarge, .text-xllarge, .text-xxlarge, .text-xlarge, .text-large, .text-small, .text-regular, .text-xsmall, .text-xxsmall, .text-xxsmall, .text-xxxsmall, .text-xxxxsmall {
+    font-weight: 400;
+}
+
+.title-xxxlarge40:hover, .title-xxxlarge36:hover, .title-xxxlarge34:hover, .title-xxxlarge32:hover, .title-large22:hover, .title-xxlarge28:hover, .title-xxxlarge:hover, .title-xxlarge:hover, .title-xxlarge:hover, .title-xlarge:hover, .title-large:hover, .title-small:hover, .title-regular:hover, .title-xsmall:hover, .title-xxsmall:hover, .title-xxsmall:hover, .title-xxxsmall:hover, .title-xxxxsmall:hover {
+    text-decoration: none;
+}
+
+
+/*Colors*/
+
+.color-black {
+    color: #000000 !important;
+}
+
+.color-white {
+    color: #ffffff !important;
+}
+
+.color-primary-project {
+}
+
+
+/*font weight*/
+
+.wheight800{
+    font-weight:800;
+}
+
+.wheight900 {
+    font-weight: 900;
+}

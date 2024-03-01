@@ -1,0 +1,8 @@
+﻿.slide-bar-tooggle-btn {
+    position: absolute;
+    top: 13px;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    z-index: 1100;
+}

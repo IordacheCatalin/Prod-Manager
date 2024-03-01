@@ -1,0 +1,23 @@
+﻿.display-center-ic{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.display-center-ic-y {
+    display: flex;
+    align-items: center;
+}
+
+.display-center-ic-x {
+    display: flex;
+    justify-content: center;
+}
+
+.text-center-ic{
+    text-align:center;
+}
+
+.flexSize1{
+    flex:1;
+}

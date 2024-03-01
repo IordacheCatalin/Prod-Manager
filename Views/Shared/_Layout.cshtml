@@ -4,61 +4,53 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Prod_Manger</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/lib/font-awesome/css/all.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/SharedItems/SideBar.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/SharedItems/NavBar.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/SharedItems/Buttons.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Structure.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/TextAndColor.css" asp-append-version="true" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Prod_Manger</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index">Products</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Clients" asp-action="Index">Clients</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="SoldProducts" asp-action="Index">Sold Items</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Categories" asp-action="Index">Categories</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="TotalBuyAndSell" asp-action="Index">TotalBuyAndSell</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <div class="wrapper app-container">
+        <partial name="_NavBarPartial" />
+        <partial name="_SideBarPartial" />
+
+
+        <div id="content" class="app-content">
+            <button type="button" id="sidebarCollapse" class="slide-bar-tooggle-btn text-xlarge">
+                <i class="fas fa-align-left"></i>
+                buttone
+            </button>
+
+            <main role="main">
+                <div id="loadingId" style="display:none;backdrop-filter: blur(10px);position:relative;z-index:100;width:100%;height:100%">
+                    <div class="loader">
+                    </div>
+                    <div style="text-align:center"> <h1>Please wait! Ongoing process!</h1></div>
+                </div>
+                <div>
+                @RenderBody()
+                </div>
+            </main>
+        </div>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <input type="hidden" id="appUrl" value="@Url.Content("~")/" />
+
+@*     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2023 - Prod_Manger - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer>    
+    </footer> *@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/FrontEnd.js" asp-append-version="true"></script>
     <script src="~/js/Services.js" asp-append-version="true"></script>
     <script src="~/lib/font-awesome/js/all.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)

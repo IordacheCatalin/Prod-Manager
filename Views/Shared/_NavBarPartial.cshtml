@@ -1,0 +1,93 @@
+﻿@* <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container-fluid">
+        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Prod_Manger</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+            <ul class="navbar-nav flex-grow-1">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Clients" asp-action="Index">Clients</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="SoldProducts" asp-action="Index">Sold Items</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Categories" asp-action="Index">Categories</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="TotalBuyAndSell" asp-action="Index">TotalBuyAndSell</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav> *@
+
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm fixed-top">
+    <div class="logo-navbar">
+        <svg width="100%" height="100%" viewBox="0 0 399 419" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+        <g transform="matrix(1,0,0,1,6.65598e-05,-127.499)">
+        <g transform="matrix(1,0,0,1,-547.138,-343.886)">
+        <g transform="matrix(1,0,0,1,873.808,889.759)">
+        <path d="M0,-418.374L0,-113.623C-0.035,-102.626 -4.543,-92.79 -12.731,-84.935C-20.932,-77.179 -32.496,-72.104 -45.788,-72.099C-59.091,-72.104 -70.655,-77.173 -78.855,-84.935C-87.043,-92.79 -91.552,-102.632 -91.587,-113.623L-91.587,-186.427L-91.576,-186.427L-91.587,-302.667C-91.552,-334.42 -105.323,-363.283 -126.699,-383.449C-148.051,-403.703 -177.322,-415.962 -209.117,-415.956C-240.935,-415.962 -270.206,-403.709 -291.559,-383.449C-312.934,-363.288 -326.705,-334.42 -326.67,-302.667L-326.67,0L-254.917,0L-254.917,-302.667C-254.881,-313.67 -250.372,-323.505 -242.185,-331.359C-233.985,-339.115 -222.421,-344.19 -209.117,-344.196C-195.824,-344.19 -184.272,-339.122 -176.073,-331.359C-167.884,-323.511 -163.375,-313.67 -163.341,-302.667L-163.341,-186.427L-163.335,-186.427L-163.341,-113.623C-163.375,-81.869 -149.593,-53.006 -128.229,-32.846C-106.865,-12.592 -77.594,-0.333 -45.788,-0.339C-13.982,-0.333 15.29,-12.586 36.642,-32.846C58.018,-53.006 71.789,-81.874 71.754,-113.623L71.754,-418.374L0,-418.374Z" style="fill:rgb(255,255,255);fill-rule:nonzero;" />
+            </g>
+            </g>
+            </g>
+            </svg>
+    </div>
+
+    <div class="container-fluid">
+        @* <a class="navbar-brand" asp-area="" asp-controller="Mga" asp-action="Index" class="title-xlarge">MGAs</a> *@
+
+        <div id="Pagename" class="title-xlarge"></div>
+
+        <span class="user-identity text-regular">@User.Identity.Name</span>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        @*        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+        <ul class="navbar-nav flex-grow-1">
+        <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Mga" asp-action="Index">Mgas</a>
+        </li>
+        </ul>
+        </div>
+        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+        <ul class="navbar-nav flex-grow-1">
+        <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="General" asp-action="Index">General Databases</a>
+        </li>
+        </ul>
+        </div>
+        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+        <ul class="navbar-nav flex-grow-1">
+        <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Job" asp-action="Index">Jobs</a>
+        </li>
+        </ul>
+        </div>
+        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+        <ul class="navbar-nav flex-grow-1">
+        <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Settings" asp-action="Index">Settings</a>
+        </li>
+        </ul>
+        </div> *@
+        @*  <div style="padding-right: 20px;">
+        <h2>@User.Identity.Name</h2>
+        </div> *@
+    </div>
+
+</nav>

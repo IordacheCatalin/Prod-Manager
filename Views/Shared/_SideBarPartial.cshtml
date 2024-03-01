@@ -1,0 +1,106 @@
+﻿<nav id="sidebar" class="producManager-slideBar">
+    <div class="sidebar-header">
+        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+            <div class="full-brand-logo producManager-slideBar">
+            </div>
+            <h3 class="title-xlarge">Product Manager</h3>
+        </a>
+    </div>
+
+    <div class="producManager-slideBar user-container">
+        <p class="user-initials"></p>
+        <p class="user-identity">@User.Identity.Name</p>
+    </div>
+
+    <ul class="list-unstyled components producManager-slideBar">
+        <li class="active">
+            <a href="#DataViewSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Data View</a>
+            <ul class="collapse list-unstyled show" id="DataViewSubmenu">
+                <li class="slideBar-item-container producManager-slideBar">
+                    <a class="slideBar-item producManager-slideBar text-regular" asp-area="" data-controller="Products" data-action="Index" asp-controller="Products" asp-action="Index">
+                        <i class="fa-solid fa-envelope-open-text producManager-slideBar"></i>
+                        <span>Products</span>
+                    </a>
+                </li>
+                <li class="slideBar-item-container producManager-slideBar">
+                    <a class="slideBar-item producManager-slideBar text-regular" asp-area="" data-controller="Clients" data-action="Index" asp-controller="Clients" asp-action="Index">
+                        <i class="fa-solid fa-envelope-open-text producManager-slideBar"></i>
+                        <span>Clients</span>
+                    </a>
+                </li>
+                <li class="slideBar-item-container producManager-slideBar">
+                    <a class="slideBar-item producManager-slideBar text-regular" asp-area="" data-controller="SoldProducts" data-action="Index" asp-controller="SoldProducts" asp-action="Index">
+                        <i class="fa-solid fa-envelope-open-text producManager-slideBar"></i>
+                        <span>SoldProducts</span>
+                    </a>
+                </li>
+                <li class="slideBar-item-container producManager-slideBar">
+                    <a class="slideBar-item producManager-slideBar text-regular" asp-area="" data-controller="Categories" data-action="Index" asp-controller="Categories" asp-action="Index">
+                        <i class="fa-solid fa-envelope-open-text producManager-slideBar"></i>
+                        <span>Categories</span>
+                    </a>
+                </li>
+                <li class="slideBar-item-container producManager-slideBar">
+                    <a class="slideBar-item producManager-slideBar text-regular" asp-area="" data-controller="TotalBuyAndSell" data-action="Index" asp-controller="TotalBuyAndSell" asp-action="Index">
+                        <i class="fa-solid fa-envelope-open-text producManager-slideBar"></i>
+                        <span>TotalBuyAndSell</span>
+                    </a>
+                </li>
+              @*   <li>
+                    <a href="#">Home 3</a>
+                </li> *@
+            </ul>
+        </li>
+
+        <li>
+            <a href="#CreateSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Data Create</a>
+            <ul class="collapse list-unstyled" id="CreateSubmenu">
+                <li class="slideBar-item-container producManager-slideBar">
+                    <a class="slideBar-item producManager-slideBar text-regular" asp-area="" data-controller="Products" data-action="Index" asp-controller="Products" asp-action="Create">
+                        <i class="fa-solid fa-envelope-open-text producManager-slideBar"></i>
+                        <span>Products</span>
+                    </a>
+                </li>
+                <li class="slideBar-item-container producManager-slideBar">
+                    <a class="slideBar-item producManager-slideBar text-regular" asp-area="" data-controller="Clients" data-action="Index" asp-controller="Clients" asp-action="Create">
+                        <i class="fa-solid fa-envelope-open-text producManager-slideBar"></i>
+                        <span>Clients</span>
+                    </a>
+                </li>          
+                <li class="slideBar-item-container producManager-slideBar">
+                    <a class="slideBar-item producManager-slideBar text-regular" asp-area="" data-controller="Categories" data-action="Index" asp-controller="Categories" asp-action="Create">
+                        <i class="fa-solid fa-envelope-open-text producManager-slideBar"></i>
+                        <span>Categories</span>
+                    </a>
+                </li> 
+                @*   <li>
+                <a href="#">Home 3</a>
+                </li> *@
+            </ul>
+        </li>
+        <li>
+            <a href="#pageSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
+            <ul class="collapse list-unstyled" id="pageSubmenu">
+                <li>
+                    <a href="#">Page 1</a>
+                </li>
+                <li>
+                    <a href="#">Page 2</a>
+                </li>
+                <li>
+                    <a href="#">Page 3</a>
+                </li>
+            </ul>
+        </li>
+               
+    </ul>
+
+   @*  <ul class="list-unstyled CTAs">
+        <li>
+            <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
+        </li>
+        <li>
+            <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a>
+        </li>
+    </ul> *@
+</nav>

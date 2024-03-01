@@ -1,0 +1,35 @@
+﻿.navbar {
+    background: #0060AF;
+    height: 60px;
+    padding-left: 250px;
+    transition: ease-in-out 0.2s;
+}
+
+    .navbar .container-fluid {
+        justify-content:flex-start;
+        color:#ffffff;
+        gap:30px;
+    }
+
+.logo-navbar {
+    position: absolute;
+    right: 20px;
+    height: 28px;
+    padding: 0px;
+    margin-left: 50px
+}
+
+a.navbar-brand {
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+}
+
+.navbar.slideBar-not-active {
+    padding-left: 0px;
+}
+
+#Pagename{
+    margin-left:50px;
+    color:#ffffff;
+}
