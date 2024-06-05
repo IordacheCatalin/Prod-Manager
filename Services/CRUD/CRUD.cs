@@ -19,7 +19,7 @@ namespace Prod_Manger.Services.CRUD
 
         public IEnumerable<T> GetAll()
         {
-            return _dbSet.ToList();
+            return _dbSet.OrderByDescending(entity => EF.Property<int>(entity, "Id"));
         }
 
         public T GetById(int id)
