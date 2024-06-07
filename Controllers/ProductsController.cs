@@ -59,7 +59,10 @@ namespace Prod_Manger.Controllers
                     TotalBuyPriceNoVAT = product.TotalBuyPriceNoVAT,
                     TotalSellPriceVAT = product.TotalSellPriceVAT,
                     TotalSellPriceNoVAT = product.TotalSellPriceNoVAT,
-                };
+                    BuyInvoice = product.BuyInvoice,
+                    InvoiceManagement = product.InvoiceManagement
+
+    };
                 productViewList.Add(productViewModel);
             }
 
@@ -178,11 +181,11 @@ namespace Prod_Manger.Controllers
         }
 
         [HttpPost]
-        public IActionResult Sell(int id, int ItemQuantity)
+        public IActionResult Sell(int id, int ItemQuantity, string InvoiceNumber)
         {
             try
             {
-                _sellMethods.SellItem(id, ItemQuantity);
+                _sellMethods.SellItem(id, ItemQuantity, InvoiceNumber);
 
                 return Json(new { success = true }); ;
 

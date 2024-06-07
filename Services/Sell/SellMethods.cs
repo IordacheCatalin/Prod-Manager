@@ -14,8 +14,9 @@ namespace Prod_Manger.Services.Sell
             _products = products;
         }
 
-        public void SellItem(int id, int ItemQuantity)
+        public void SellItem(int id, int ItemQuantity, string invoiceNumber)
         {
+            
             // Retrieve the client from the current table
             var soldProduct = _products.GetById(id);
 
@@ -41,8 +42,9 @@ namespace Prod_Manger.Services.Sell
                     SellPriceVAT = soldProduct.SellPriceVAT,
                     SellPriceNoVAT = soldProduct.SellPriceNoVAT,
                     BuyDate = soldProduct.BuyDate,
-                    SellDate = soldProduct.SellDate
-
+                    SellDate = DateTime.Now,
+                    InvoiceManagement = soldProduct.InvoiceManagement,
+                    InvoiceNumber = invoiceNumber
                 };
 
                 if (ItemQuantity == 1)

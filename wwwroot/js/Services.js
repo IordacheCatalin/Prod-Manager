@@ -123,10 +123,12 @@
     $('#sell-item-form').on('submit', function (event) {
         console.log('submit')
         event.preventDefault();
+        let invoiceNumber = document.getElementById("invoiceNumber").value;
+        console.log(invoiceNumber)
         let productId = document.getElementById("productId").value;
         let ItemQuantity = document.getElementById("ItemQuantity_" + productId).value;
        
-        sellProduct(productId, ItemQuantity); // Execute the sellProduct function
+        sellProduct(productId, ItemQuantity, invoiceNumber); // Execute the sellProduct function
     });   
 
     $('.nav-link').click(function () {
@@ -137,11 +139,15 @@
     });
 });
 
-function sellProduct(productId, ItemQuantity) {
+function sellProduct(productId, ItemQuantity, invoiceNumber) {
     $.ajax({
         type: "POST",
         url: "/Products/Sell",
-        data: { id: productId, ItemQuantity: ItemQuantity },
+        data: {
+            id: productId,
+            ItemQuantity: ItemQuantity,
+            invoiceNumber: invoiceNumber
+        },
         success: function (response) {
             if (response.success) {
                 let quantity = document.getElementById("ItemQuantity_" + productId).value;

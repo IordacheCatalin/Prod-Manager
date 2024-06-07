@@ -18,6 +18,7 @@ namespace Prod_Manger.Models.Domain
         public decimal SellPriceNoVAT { get; set; }
         public DateTime BuyDate { get; set; }
         public DateTime SellDate { get; set; }
-
+        public string? InvoiceManagement {  get; set; }
+        public string? InvoiceNumber { get; set; }
     }
 }

@@ -22,5 +22,7 @@
         public decimal TotalBuyPriceNoVAT { get; set; }
         public decimal TotalSellPriceVAT { get; set; }
         public decimal TotalSellPriceNoVAT { get; set; }
+        public string? BuyInvoice { get; set; }
+        public string? InvoiceManagement { get; set; }
     }
 }

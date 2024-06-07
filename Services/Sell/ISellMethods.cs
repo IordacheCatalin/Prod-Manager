@@ -2,6 +2,6 @@
 {
     public interface ISellMethods
     {
-        public void SellItem(int id, int ItemQuantity);
+        public void SellItem(int id, int ItemQuantity, string InvoiceNumber);
     }
 }

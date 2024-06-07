@@ -3,8 +3,8 @@
     public class ProductModel
     {
         public int Id { get; set; }
-        public string?Name { get; set; }
-        public string?Description { get; set; }
+        public string? Name { get; set; }
+        public string? Description { get; set; }
         public string? Category { get; set; }
         public string? SubCategory { get; set; }
         public string? SubSubCategory { get; set; }
@@ -22,5 +22,7 @@
         public decimal TotalBuyPriceNoVAT { get; set; }
         public decimal TotalSellPriceVAT { get; set; }
         public decimal TotalSellPriceNoVAT { get; set; }
+        public string? BuyInvoice {  get; set; }
+        public string? InvoiceManagement { get; set; }
     }
 }
